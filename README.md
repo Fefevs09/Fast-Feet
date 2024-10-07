@@ -1,73 +1,64 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Tasks
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+- **Implementar bastantes testes**
+- Implementar testes utilizando a biblioteca poku
+- Utilizar o padrão DDD
+- Utilizar autenticação
+- Utilizar validação com a biblioteca ZOD
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Introdução
 
-## Description
+### Sobre o desafio
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Nesse desafio desenvolveremos uma API para controle de encomendas de uma transportadora fictícia, a FastFeet.
 
-## Installation
+#### Regras da aplicação
 
-```bash
-$ pnpm install
-```
+- A aplicação deve ter dois tipos de usuário, entregador e/ou admin
+- Deve ser possível realizar login com CPF e Senha
+- Deve ser possível realizar o CRUD dos entregadores
+- Deve ser possível realizar o CRUD das encomendas
+- Deve ser possível realizar o CRUD dos destinatários
+- Deve ser possível marcar uma encomenda como aguardando (Disponível para retirada)
+- Deve ser possível retirar uma encomenda
+- Deve ser possível marcar uma encomenda como entregue
+- Deve ser possível marcar uma encomenda como devolvida
+- Deve ser possível listar as encomendas com endereços de entrega próximo ao local do entregador
+- Deve ser possível alterar a senha de um usuário
+- Deve ser possível listar as entregas de um usuário
+- Deve ser possível notificar o destinatário a cada alteração no status da encomenda
 
-## Running the app
+#### Regras de negócio
 
-```bash
-# development
-$ pnpm run start
+- Somente usuário do tipo admin pode realizar operações de CRUD nas encomendas
+- Somente usuário do tipo admin pode realizar operações de CRUD dos entregadores
+- Somente usuário do tipo admin pode realizar operações de CRUD dos destinatários
+- Para marcar uma encomenda como entregue é obrigatório o envio de uma foto
+- Somente o entregador que retirou a encomenda pode marcar ela como entregue
+- Somente o admin pode alterar a senha de um usuário
+- Não deve ser possível um entregador listar as encomendas de outro entregador
 
-# watch mode
-$ pnpm run start:dev
+#### Conceitos que pode praticar
 
-# production mode
-$ pnpm run start:prod
-```
+- DDD, Domain Events, Clean Architecture
+- Autenticação e Autorização (RBAC)
+- Testes unitários e e2e
+- Integração com serviços externos
 
-## Test
+#### Contexto da aplicação
 
-```bash
-# unit tests
-$ pnpm run test
+É comum ao estar desenvolvendo uma API, imaginar como esses dados vão estar sendo utilizados pelo cliente web e/ou mobile.
 
-# e2e tests
-$ pnpm run test:e2e
+Por isso, deixamos abaixo o link para o layout da aplicação que utilizaria essa API.
 
-# test coverage
-$ pnpm run test:cov
-```
+[FastFeet](https://www.figma.com/file/hn0qGhnSHDVst7oaY3PF72/FastFeet?type=design&node-id=0:1&mode=design&t=eLVBsXQU7wYugimZ-1)
 
-## Support
+## Entrega
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Após concluir o desafio, você deve enviar a URL do seu código no GitHub para a plataforma.
 
-## Stay in touch
+Além disso, que tal fazer um post no LinkedIn compartilhando o seu aprendizado e contando como foi a experiência?
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+É uma excelente forma de demonstrar seus conhecimentos e atrair novas oportunidades!
 
-## License
-
-Nest is [MIT licensed](LICENSE).
+Feito com 💜 por Rocketseat 👋
