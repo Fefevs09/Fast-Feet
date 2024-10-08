@@ -18,12 +18,12 @@ beforeEach(async () => {
   await app.init();
 
   prisma = app.get<PrismaService>(PrismaService);
-  await prisma.user.deleteMany(); // Clear the users table
+  // await prisma.user.deleteMany(); // Clear the users table
   await sleep(2000);
 });
 
 afterEach(async () => {
-  await prisma.user.deleteMany(); // Clear the users table again
+  // await prisma.user.deleteMany(); // Clear the users table again
   await app.close();
 });
 
