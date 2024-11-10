@@ -2,8 +2,9 @@ import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { AppModule } from 'src/app.module';
 import request from 'supertest';
-import { CreateAccountBodySchema } from 'src/controllers/create-account.controller';
-import { PrismaService } from 'src/prisma/prisma.service';
+// import { CreateAccountBodySchema } from 'src/controllers/create-account.controller';
+import { CreateAccountBodySchema } from './create-account.controller';
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 
 describe('Create Account (e2e)', () => {
   let app: INestApplication;
