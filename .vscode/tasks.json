@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "test:watch",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: test:watch",
+      "detail": "vitest"
+    },
+    {
+      "type": "npm",
+      "script": "start:dev",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "pnpm: start:dev",
+      "detail": "nest start --watch"
+    },
+    {
+      "type": "npm",
+      "script": "start:dev",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "pnpm: start:dev",
+      "detail": "nest start --watch"
+    }
+  ]
+}
