@@ -9,7 +9,19 @@ export interface DeliveryDriverProps {
 }
 
 export class DeliveryDriver extends Entity<DeliveryDriverProps> {
-  constructor(props: DeliveryDriverProps, id?: UniqueEntityID) {
-    super(props, id);
+  get name() {
+    return this.name;
+  }
+  get cpf() {
+    return this.cpf;
+  }
+  get password() {
+    return this.password;
+  }
+
+  static create(props: DeliveryDriverProps, id?: UniqueEntityID) {
+    const deliveryDrive = new DeliveryDriver(props, id);
+
+    return deliveryDrive;
   }
 }
