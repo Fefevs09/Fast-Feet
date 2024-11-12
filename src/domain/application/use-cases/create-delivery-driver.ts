@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { DeliveryDriver } from '../entities/delivery-driver';
-import { CPF } from '../entities/value-objects/cpf';
+import { DeliveryDriver } from '@/domain/enterprise/delivery/entities/delivery-driver';
+import { CPF } from '@/domain/enterprise/delivery/entities/value-objects/cpf';
 import { DeliveryDriverRepository } from '../repositories/delivery-driver';
 
 interface CreateDeliveryDriverUseCaseRequest {

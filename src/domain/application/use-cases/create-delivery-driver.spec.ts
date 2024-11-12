@@ -1,4 +1,4 @@
-import { CPF } from '../entities/value-objects/cpf';
+import { CPF } from '@/domain/enterprise/delivery/entities/value-objects/cpf';
 import { DeliveryDriverRepository } from '../repositories/delivery-driver';
 import { CreateDeliveryDriverUseCase } from './create-delivery-driver';
 
@@ -7,6 +7,7 @@ const fakeDeliveryDriverRepository: DeliveryDriverRepository = {
     return;
   },
 };
+
 test('create a delivery driver', async () => {
   const deliveryDriver = new CreateDeliveryDriverUseCase(
     fakeDeliveryDriverRepository,
