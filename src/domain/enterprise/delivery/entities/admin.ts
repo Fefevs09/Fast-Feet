@@ -1,15 +1,15 @@
-import { randomUUID } from 'node:crypto';
+import { Entity } from '@/core/entities/entity';
+import { UniqueEntityID } from '@/core/entities/unique-entity-id';
 
 export interface AdminProps {
   name: string;
+  email: string;
+  password: string;
 }
 
-export class Admin {
-  id: string;
-  name: string;
-
-  constructor({ name }: AdminProps, id?: string) {
-    this.name = name;
-    this.id = id ?? randomUUID();
+export class Admin extends Entity<AdminProps> {
+  static create(props: AdminProps, id?: UniqueEntityID) {
+    const admin = new Admin(props, id);
+    return admin;
   }
 }
