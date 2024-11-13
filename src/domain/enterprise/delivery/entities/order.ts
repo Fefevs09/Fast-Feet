@@ -9,7 +9,7 @@ export interface OrderProps {
   status: Status;
   postDate: Date;
   pickupDate?: Date;
-  deliveryDate?: Date;
+  deliveryDate?: Date | null;
   orderImageUrl: string;
 }
 
