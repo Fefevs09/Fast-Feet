@@ -1,7 +1,6 @@
 import { InMemoryOrderRepository } from 'test/repositories/in-memory-order-repository';
 import { CreateOrderUseCase } from './create-order';
-import { UniqueEntityID } from '@/core/entities/unique-entity-id';
-import { Order, OrderProps } from '../../enterprise/entities/order';
+import { makeOrders } from 'test/factories/make-orders';
 
 let inMemoryOrderRepository: InMemoryOrderRepository;
 let sut: CreateOrderUseCase;
@@ -13,17 +12,17 @@ describe('Create order repository', async () => {
   });
 
   it('should be return a order entity', async () => {
-    const fakeData = {
-      recipientId: '1',
-      address: 'rua do bobo',
-    };
-    const { order } = await sut.execute({
-      address: fakeData.address,
-      recipientId: fakeData.recipientId,
-    });
-    expect(order.id).toBeTruthy();
+    const newOrder = makeOrders();
 
+    const { order } = await sut.execute({
+      address: newOrder.address,
+      recipientId: newOrder.recipientId.toString(),
+    });
+
+    expect(order.id).toBeTruthy();
     expect(order.recipientId).toBeTruthy();
-    expect(order.address).toEqual(fakeData.address);
+    expect(order.address).toEqual(newOrder.address);
+    expect(inMemoryOrderRepository.items[0]).toBeTruthy();
+    expect(inMemoryOrderRepository.items.length).toBe(1);
   });
 });
