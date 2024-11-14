@@ -1,4 +1,4 @@
-import { CPF } from '@/domain/enterprise/delivery/entities/value-objects/cpf';
+import { CPF } from '@/domain/delivery/enterprise/entities/value-objects/cpf';
 import { DeliveryDriverRepository } from '../repositories/delivery-driver';
 import { CreateDeliveryDriverUseCase } from './create-delivery-driver';
 

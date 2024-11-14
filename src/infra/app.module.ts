@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { envSchema } from './infra/env/env';
+import { envSchema } from './env/env';
 import { AuthModule } from '@/infra/auth/auth.module';
 import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { AuthenticateController } from '@/infra/http/controllers/authenticate-controller';
