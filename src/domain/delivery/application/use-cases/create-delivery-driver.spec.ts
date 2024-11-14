@@ -1,23 +1,30 @@
 import { CPF } from '@/domain/delivery/enterprise/entities/value-objects/cpf';
-import { DeliveryDriverRepository } from '../repositories/delivery-driver';
 import { CreateDeliveryDriverUseCase } from './create-delivery-driver';
+import { InMemoryDeliveryDriverRepository } from 'test/repositories/in-memory-delivery-driver-repository';
 
-const fakeDeliveryDriverRepository: DeliveryDriverRepository = {
-  create: async () => {
-    return;
-  },
-};
+let inMemoryDeliveryDriverRepository: InMemoryDeliveryDriverRepository;
+let sut: CreateDeliveryDriverUseCase;
 
-test('create a delivery driver', async () => {
-  const deliveryDriver = new CreateDeliveryDriverUseCase(
-    fakeDeliveryDriverRepository,
-  );
+beforeEach(() => {
+  inMemoryDeliveryDriverRepository = new InMemoryDeliveryDriverRepository();
+  sut = new CreateDeliveryDriverUseCase(inMemoryDeliveryDriverRepository);
+});
 
-  const newDeliveryDriver = await deliveryDriver.execute({
+describe('Use case Delivery Driver', () => {
+  const fakeData = {
     name: 'Jon Doe',
     password: '12345678',
-    cpf: CPF.createFromText('123145050'),
-  });
+    cpf: '123.145.500-34',
+  };
 
-  expect(newDeliveryDriver.cpf).toEqual('123145050');
+  it('create a delivery driver', async () => {
+    const { deliveryDriver } = await sut.execute({
+      cpf: fakeData.cpf,
+      password: fakeData.password,
+      name: fakeData.name,
+    });
+
+    expect(deliveryDriver.id).toBeTruthy();
+    expect(deliveryDriver.cpf).toEqual(CPF.createFromText(fakeData.cpf));
+  });
 });

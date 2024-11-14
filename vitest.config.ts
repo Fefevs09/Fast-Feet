@@ -1,17 +1,24 @@
 import swc from 'unplugin-swc';
 import { defineConfig } from 'vitest/config';
-// import tsConfigPaths from 'vite-tsconfig-paths';
+// import tsconfigPaths from 'vite-tsconfig-paths';
+import path from 'node:path';
 
 export default defineConfig({
   test: {
     globals: true,
+    alias: {
+      '@': path.resolve(__dirname, './src/'),
+    },
     root: './',
   },
+  resolve: {
+    alias: {
+      '@': './src',
+    },
+  },
   plugins: [
-    // tsConfigPaths(),
-    // This is required to build the test files with SWC
+    // tsconfigPaths(),
     swc.vite({
-      // Explicitly set the module type to avoid inheriting this value from a `.swcrc` config file
       module: { type: 'es6' },
     }),
   ],

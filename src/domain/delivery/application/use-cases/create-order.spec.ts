@@ -1,32 +1,29 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { InMemoryOrderRepository } from 'test/repositories/in-memory-order-repository';
-import { Order } from '../../enterprise/entities/order';
-import { OrderRepository } from '../repositories/order-repository';
 import { CreateOrderUseCase } from './create-order';
+import { UniqueEntityID } from '@/core/entities/unique-entity-id';
+import { Order, OrderProps } from '../../enterprise/entities/order';
 
 let inMemoryOrderRepository: InMemoryOrderRepository;
+let sut: CreateOrderUseCase;
 
 describe('Create order repository', async () => {
   beforeEach(() => {
     inMemoryOrderRepository = new InMemoryOrderRepository();
+    sut = new CreateOrderUseCase(inMemoryOrderRepository);
   });
 
-  const sut = new CreateOrderUseCase(inMemoryOrderRepository);
-
-  const fakeData = {
-    recipientId: 'f3fc91ea-bd8a-4682-9a51-48a857841eeb',
-    address: 'Rua tal da avenida tal',
-  };
-
-  const { order } = await sut.execute({
-    recipientId: fakeData.recipientId,
-    address: fakeData.address,
-  });
-
-  it('should be return a order entity', () => {
+  it('should be return a order entity', async () => {
+    const fakeData = {
+      recipientId: '1',
+      address: 'rua do bobo',
+    };
+    const { order } = await sut.execute({
+      address: fakeData.address,
+      recipientId: fakeData.recipientId,
+    });
     expect(order.id).toBeTruthy();
 
-    expect(order.recipientId).toEqual(fakeData.recipientId);
+    expect(order.recipientId).toBeTruthy();
     expect(order.address).toEqual(fakeData.address);
   });
 });

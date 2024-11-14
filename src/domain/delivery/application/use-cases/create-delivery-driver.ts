@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { DeliveryDriver } from '@/domain/delivery/enterprise/entities/delivery-driver';
 import { CPF } from '@/domain/delivery/enterprise/entities/value-objects/cpf';
-import { DeliveryDriverRepository } from '../repositories/delivery-driver';
+import { DeliveryDriverRepository } from '../repositories/delivery-driver-repository';
 
 interface CreateDeliveryDriverUseCaseRequest {
   name: string;
-  cpf: CPF;
+  cpf: string;
   password: string;
+}
+
+interface CreateDeliveryDriverUseCaseResponse {
+  deliveryDriver: DeliveryDriver;
 }
 
 @Injectable()
@@ -17,18 +21,17 @@ export class CreateDeliveryDriverUseCase {
     cpf,
     name,
     password,
-  }: CreateDeliveryDriverUseCaseRequest): Promise<{
-    name: string;
-    cpf: CPF;
-    password: string;
-  }> {
+  }: CreateDeliveryDriverUseCaseRequest): Promise<CreateDeliveryDriverUseCaseResponse> {
     const deliveryDriver = DeliveryDriver.create({
-      cpf,
+      cpf: CPF.createFromText(cpf),
       name,
       password,
     });
 
     await this.deliveryDriverRepository.create(deliveryDriver);
-    return deliveryDriver;
+
+    return {
+      deliveryDriver,
+    };
   }
 }
