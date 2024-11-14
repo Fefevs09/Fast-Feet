@@ -15,26 +15,26 @@ export interface OrderProps {
 }
 
 export class Order extends Entity<OrderProps> {
-  get recipientId(): UniqueEntityID {
-    return this.recipientId;
+  get recipientId() {
+    return this.props.recipientId;
   }
-  get address(): string {
-    return this.address;
+  get address() {
+    return this.props.address;
   }
-  get status(): Status {
-    return this.status;
+  get status() {
+    return this.props.status;
   }
-  get postDate(): Status {
-    return this.postDate;
+  get postDate() {
+    return this.props.postDate;
   }
-  get pickupDate(): Date {
-    return this.pickupDate;
+  get pickupDate() {
+    return this.props.pickupDate;
   }
-  get deliveryDate(): Date {
-    return this.deliveryDate;
+  get deliveryDate() {
+    return this.props.deliveryDate;
   }
-  get orderImageUrl(): string {
-    return this.orderImageUrl;
+  get orderImageUrl() {
+    return this.props.orderImageUrl;
   }
 
   static create(

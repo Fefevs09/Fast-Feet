@@ -10,18 +10,29 @@ export interface DeliveryDriverProps {
   currentLocation?: string; // type string for now
 
   createdAt: Date;
-  updatedAt?: Date;
+  updatedAt?: Date | null;
 }
 
 export class DeliveryDriver extends Entity<DeliveryDriverProps> {
   get name() {
-    return this.name;
+    return this.props.name;
   }
   get cpf() {
-    return this.cpf;
+    return this.props.cpf;
   }
   get password() {
-    return this.password;
+    return this.props.password;
+  }
+
+  get currentLocation() {
+    return this.props.currentLocation;
+  }
+  get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
+  get updatedAt() {
+    return this.props.updatedAt;
   }
 
   static create(
@@ -31,7 +42,7 @@ export class DeliveryDriver extends Entity<DeliveryDriverProps> {
     const deliveryDrive = new DeliveryDriver(
       {
         ...props,
-        createdAt: new Date(),
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     );
