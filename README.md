@@ -13,15 +13,15 @@ Nesse desafio desenvolveremos uma API para controle de encomendas de uma transpo
 
 #### Tecnologias (Até o momento)
 
-- [NestJs](https://nestjs.com/)
+- [NestJs](https://nestjs.com/) um framework Node.js
 - [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/) para upload de arquivos
-- [Prisma](https://www.prisma.io/) como _ORM_
+- [Prisma](https://www.prisma.io/) como **ORM**
 - [JWT](https://jwt.io/) para authenticação e autorização
-- [Zod](https://zod.dev/) para a validação da informação
+- [Zod](https://zod.dev/) para a validação das informações
 
 #### Regras da aplicação
 
-- [ ] A aplicação deve ter dois tipos de usuário, entregador e/ou admin
+- [x] A aplicação deve ter dois tipos de usuário, entregador e/ou admin
 - [ ] Deve ser possível realizar login com CPF e Senha
 - [ ] Deve ser possível realizar o CRUD dos entregadores
 - [ ] Deve ser possível realizar o CRUD das encomendas
