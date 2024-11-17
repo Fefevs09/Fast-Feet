@@ -14,15 +14,15 @@ describe('Create order repository', async () => {
   it('should be return a order entity', async () => {
     const newOrder = makeOrders();
 
-    const { order } = await sut.execute({
+    const result = await sut.execute({
       address: newOrder.address,
       recipientId: newOrder.recipientId.toString(),
     });
 
-    expect(order.id).toBeTruthy();
-    expect(order.recipientId).toBeTruthy();
-    expect(order.address).toEqual(newOrder.address);
+    expect(result.isRight()).toBe(true);
+    expect(result.value?.order.recipientId).toBeTruthy();
     expect(inMemoryOrderRepository.items[0]).toBeTruthy();
+    expect(inMemoryOrderRepository.items[0]).toEqual(result.value?.order);
     expect(inMemoryOrderRepository.items.length).toBe(1);
   });
 });

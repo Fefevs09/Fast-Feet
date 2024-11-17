@@ -1,4 +1,3 @@
-import { CPF } from '@/domain/delivery/enterprise/entities/value-objects/cpf';
 import { CreateDeliveryDriverUseCase } from './create-delivery-driver';
 import { InMemoryDeliveryDriverRepository } from 'test/repositories/in-memory-delivery-driver-repository';
 
@@ -18,13 +17,15 @@ describe('Use case Delivery Driver', () => {
   };
 
   it('create a delivery driver', async () => {
-    const { deliveryDriver } = await sut.execute({
+    const result = await sut.execute({
       cpf: fakeData.cpf,
       password: fakeData.password,
       name: fakeData.name,
     });
 
-    expect(deliveryDriver.id).toBeTruthy();
-    expect(deliveryDriver.cpf).toEqual(CPF.createFromText(fakeData.cpf));
+    expect(result.isRight()).toBe(true);
+    expect(inMemoryDeliveryDriverRepository.items[0]).toEqual(
+      result.value?.deliveryDriver,
+    );
   });
 });

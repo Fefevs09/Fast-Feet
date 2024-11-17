@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { DeliveryDriver } from '@/domain/delivery/enterprise/entities/delivery-driver';
-import { CPF } from '@/domain/delivery/enterprise/entities/value-objects/cpf';
-import { DeliveryDriverRepository } from '../repositories/delivery-driver-repository';
+import { Injectable } from "@nestjs/common";
+import { DeliveryDriver } from "@/domain/delivery/enterprise/entities/delivery-driver";
+import { CPF } from "@/domain/delivery/enterprise/entities/value-objects/cpf";
+import { DeliveryDriverRepository } from "../repositories/delivery-driver-repository";
+import { Either, right } from "@/core/either";
 
 interface CreateDeliveryDriverUseCaseRequest {
   name: string;
@@ -9,9 +10,12 @@ interface CreateDeliveryDriverUseCaseRequest {
   password: string;
 }
 
-interface CreateDeliveryDriverUseCaseResponse {
-  deliveryDriver: DeliveryDriver;
-}
+export type CreateDeliveryDriverUseCaseResponse = Either<
+  null,
+  {
+    deliveryDriver: DeliveryDriver;
+  }
+>;
 
 @Injectable()
 export class CreateDeliveryDriverUseCase {
@@ -30,8 +34,8 @@ export class CreateDeliveryDriverUseCase {
 
     await this.deliveryDriverRepository.create(deliveryDriver);
 
-    return {
+    return right({
       deliveryDriver,
-    };
+    });
   }
 }
