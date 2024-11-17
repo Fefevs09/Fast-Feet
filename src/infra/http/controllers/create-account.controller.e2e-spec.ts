@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { AppModule } from 'src/app.module';
+import { AppModule } from '@/infra/app.module';
 import request from 'supertest';
 // import { CreateAccountBodySchema } from 'src/controllers/create-account.controller';
 import { CreateAccountBodySchema } from './create-account.controller';
