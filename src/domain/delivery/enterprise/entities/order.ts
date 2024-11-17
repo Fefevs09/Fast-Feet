@@ -80,15 +80,7 @@ export class Order extends AggregateRoot<OrderProps> {
   }
 
   static create(
-    props: Optional<
-      OrderProps,
-      | 'postDate'
-      | 'status'
-      | 'deliveryDriverId'
-      | 'pickupDate'
-      | 'deliveryDate'
-      | 'orderImageUrl'
-    >,
+    props: Optional<OrderProps, 'postDate' | 'status'>,
     id?: UniqueEntityID,
   ) {
     const order = new Order(
@@ -96,7 +88,6 @@ export class Order extends AggregateRoot<OrderProps> {
         ...props,
         status: props.status ?? Status.WAITING,
         postDate: props.postDate ?? new Date(),
-        deliveryDriverId: props.deliveryDriverId ?? undefined,
       },
       id,
     );
