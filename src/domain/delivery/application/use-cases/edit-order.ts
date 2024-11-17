@@ -1,7 +1,7 @@
 // Deve ser possível marcar uma encomenda como aguardando (Disponível para retirada)
 // Provalmente Status Order vai ser um domain event
 import { OrderRepository } from '../repositories/order-repository';
-import { Status } from '../../enterprise/entities/status';
+import { Status } from '../../enterprise/entities/value-objects/status';
 import { Either, left, right } from '@/core/either';
 import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error';
 import { NotAllowedError } from '@/core/errors/errors/not-allowed-error';

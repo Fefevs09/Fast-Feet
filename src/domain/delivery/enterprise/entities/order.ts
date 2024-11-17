@@ -1,5 +1,5 @@
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
-import { Status } from './status';
+import { Status } from './value-objects/status';
 import { Optional } from '@/core/types/optional';
 import { AggregateRoot } from '@/core/entities/aggregate-root';
 
