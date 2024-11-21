@@ -29,8 +29,6 @@ export class CreateAccountController {
       },
     });
 
-    console.log(userWithSameEmail);
-
     if (userWithSameEmail) {
       throw new ConflictException(
         'User with same e-mail address already exist.',
