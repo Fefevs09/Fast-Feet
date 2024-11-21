@@ -6,11 +6,15 @@ import { Either, left, right } from '@/core/either';
 import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error';
 import { NotAllowedError } from '@/core/errors/errors/not-allowed-error';
 import { Order } from '../../enterprise/entities/order';
+import { OrderAttachmentsRepository } from '../repositories/order-attachments-repository';
+import { OrderAttachmentList } from '../../enterprise/entities/order-attachment-list';
+import { OrderAttachment } from '../../enterprise/entities/order-attachment';
+import { UniqueEntityID } from '@/core/entities/unique-entity-id';
 
 interface EditOrderUseCaseRequest {
   orderId: string;
   status: Status;
-  orderImageUrl?: string | undefined;
+  attachmentsIds: string[];
 }
 
 type EditOrderUseCaseResponse = Either<
@@ -21,11 +25,15 @@ type EditOrderUseCaseResponse = Either<
 >;
 
 export class EditOrderUseCase {
-  constructor(private orderRepository: OrderRepository) {}
+  constructor(
+    private orderAttachmentsRepository: OrderAttachmentsRepository,
+    private orderRepository: OrderRepository,
+  ) {}
 
   async execute({
     orderId,
     status,
+    attachmentsIds,
   }: EditOrderUseCaseRequest): Promise<EditOrderUseCaseResponse> {
     const order = await this.orderRepository.findById(orderId);
 
@@ -33,6 +41,23 @@ export class EditOrderUseCase {
       return left(new ResourceNotFoundError());
     }
 
+    const currentOrderAttachments =
+      await this.orderAttachmentsRepository.findManyByOrderId(orderId);
+
+    const orderAttachmentList = new OrderAttachmentList(
+      currentOrderAttachments,
+    );
+
+    const orderAttachments = attachmentsIds.map((attachmentId) => {
+      return OrderAttachment.create({
+        attachmentId: new UniqueEntityID(attachmentId),
+        orderId: order.id,
+      });
+    });
+
+    orderAttachmentList.update(orderAttachments);
+
+    order.attachments = orderAttachmentList;
     order.status = status;
 
     await this.orderRepository.save(order);

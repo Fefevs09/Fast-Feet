@@ -3,7 +3,7 @@ import { Order } from '../../enterprise/entities/order';
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
 import { Injectable } from '@nestjs/common';
 import { Either, right } from '@/core/either';
-import { OrderAttachment } from '../../enterprise/entities/delivery-driver-attachment';
+import { OrderAttachment } from '../../enterprise/entities/order-attachment';
 import { OrderAttachmentList } from '../../enterprise/entities/order-attachment-list';
 
 interface CreateOrderUseCaseRequest {

@@ -8,10 +8,10 @@ export interface OrderAttachmentProps {
 
 export class OrderAttachment extends Entity<OrderAttachmentProps> {
   get orderId(): UniqueEntityID {
-    return this.orderId;
+    return this.props.orderId;
   }
-  get attachmentId(): string {
-    return this.attachmentId;
+  get attachmentId() {
+    return this.props.attachmentId;
   }
 
   static create(props: OrderAttachmentProps, id?: UniqueEntityID) {
