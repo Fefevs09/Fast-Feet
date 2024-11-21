@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
-import { DeliveryDriver } from "@/domain/delivery/enterprise/entities/delivery-driver";
-import { CPF } from "@/domain/delivery/enterprise/entities/value-objects/cpf";
-import { DeliveryDriverRepository } from "../repositories/delivery-driver-repository";
-import { Either, right } from "@/core/either";
+import { Injectable } from '@nestjs/common';
+import { DeliveryDriver } from '@/domain/delivery/enterprise/entities/delivery-driver';
+import { CPF } from '@/domain/delivery/enterprise/entities/value-objects/cpf';
+import { DeliveryDriverRepository } from '../repositories/delivery-driver-repository';
+import { Either, right } from '@/core/either';
 
 interface CreateDeliveryDriverUseCaseRequest {
   name: string;
