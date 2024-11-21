@@ -2,13 +2,19 @@ import { InMemoryOrderRepository } from 'test/repositories/in-memory-order-repos
 import { CreateOrderUseCase } from './create-order';
 import { makeOrders } from 'test/factories/make-orders';
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
+import { InMemoryOrderAttachmentsRepository } from 'test/repositories/in-memory-order-attachments-repository';
 
 let inMemoryOrderRepository: InMemoryOrderRepository;
+let inMemoryOrderAttachmentsRepository: InMemoryOrderAttachmentsRepository;
 let sut: CreateOrderUseCase;
 
 describe('Create order repository', async () => {
   beforeEach(() => {
-    inMemoryOrderRepository = new InMemoryOrderRepository();
+    inMemoryOrderAttachmentsRepository =
+      new InMemoryOrderAttachmentsRepository();
+    inMemoryOrderRepository = new InMemoryOrderRepository(
+      inMemoryOrderAttachmentsRepository,
+    );
     sut = new CreateOrderUseCase(inMemoryOrderRepository);
   });
 

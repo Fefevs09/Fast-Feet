@@ -12,8 +12,10 @@ let inMemoryOrderAttachmentsRepository: InMemoryOrderAttachmentsRepository;
 let sut: EditOrderUseCase;
 
 beforeEach(() => {
-  inMemoryOrderRepository = new InMemoryOrderRepository();
   inMemoryOrderAttachmentsRepository = new InMemoryOrderAttachmentsRepository();
+  inMemoryOrderRepository = new InMemoryOrderRepository(
+    inMemoryOrderAttachmentsRepository,
+  );
   sut = new EditOrderUseCase(
     inMemoryOrderAttachmentsRepository,
     inMemoryOrderRepository,

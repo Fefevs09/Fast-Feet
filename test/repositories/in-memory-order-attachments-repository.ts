@@ -12,4 +12,12 @@ export class InMemoryOrderAttachmentsRepository
 
     return orderAttachments;
   }
+
+  async deleteManyByOrderId(orderId: string): Promise<void> {
+    const orderAttachments = this.items.filter(
+      (item) => item.orderId.toString() !== orderId,
+    );
+
+    this.items = orderAttachments;
+  }
 }
