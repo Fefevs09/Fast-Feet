@@ -2,7 +2,7 @@ import { UniqueEntityID } from '@/core/entities/unique-entity-id';
 import { Status } from './value-objects/status';
 import { Optional } from '@/core/types/optional';
 import { AggregateRoot } from '@/core/entities/aggregate-root';
-import { OrderAttachment } from './delivery-driver-attachment';
+import { OrderAttachmentList } from './order-attachment-list';
 
 export interface OrderProps {
   recipientId: UniqueEntityID;
@@ -13,7 +13,7 @@ export interface OrderProps {
   updatedAt?: Date;
   pickupDate?: Date;
   deliveryDate?: Date;
-  attachments: OrderAttachment[];
+  attachments: OrderAttachmentList;
 }
 
 export class Order extends AggregateRoot<OrderProps> {
@@ -45,11 +45,11 @@ export class Order extends AggregateRoot<OrderProps> {
     return this.props.deliveryDate;
   }
 
-  get attachments(): OrderAttachment[] | undefined {
+  get attachments() {
     return this.props.attachments;
   }
 
-  set attachments(attachments: OrderAttachment[]) {
+  set attachments(attachments: OrderAttachmentList) {
     this.props.attachments = attachments;
   }
 
@@ -93,7 +93,7 @@ export class Order extends AggregateRoot<OrderProps> {
         ...props,
         status: props.status ?? Status.WAITING,
         postDate: props.postDate ?? new Date(),
-        attachments: props.attachments ?? [],
+        attachments: props.attachments ?? new OrderAttachmentList(),
       },
       id,
     );
